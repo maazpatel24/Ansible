@@ -1,0 +1,31 @@
+# Replaced the hardcoded value of the SNMP port in playbook to use the value from the variable named "snmp_port"
+# ---
+# - name: 'Add nameserver in resolv.conf file on localhos$
+#   hosts: localhost
+#   become: yes
+#   tasks:
+#     - name: 'Add nameserver in resolv.conf file'
+#       lineinfile:
+#         path: /tmp/resolv.conf
+#         line: 'nameserver {{  nameserver_ip  }}'
+#     - name: 'Disable SNMP Port'
+#       firewalld:
+#         port: '160-161'
+#         permanent: true
+#         state: disabled
+
+
+---
+- name: 'Add nameserver in resolv.conf file on localhos$
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: 'Add nameserver in resolv.conf file'
+      lineinfile:
+        path: /tmp/resolv.conf
+        line: 'nameserver {{  nameserver_ip  }}'
+    - name: 'Disable SNMP Port'
+      firewalld:
+        port: '{{ snmp_port }}'
+        permanent: true
+        state: disabled

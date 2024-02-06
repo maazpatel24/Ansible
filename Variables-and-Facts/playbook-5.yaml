@@ -1,0 +1,25 @@
+# The user details like username, password, and email are already added to the inventory file as a dictionary variable called user_details.
+# Accessing values from Dictionary
+# ---
+# - hosts: all
+#   become: yes
+#   tasks:
+#     - name: Set up user
+#       user:
+#         name: "admin"
+#         password: "secret_pass"
+#         comment: "admin@example.com"
+#         state: present
+
+
+
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Set up user
+      user:
+        name: "{{ user_details.username }}"
+        password: "{{ user_details.password }}"
+        comment: "{{ user_details.email }}"
+        state: present

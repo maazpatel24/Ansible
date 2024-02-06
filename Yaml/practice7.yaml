@@ -1,0 +1,10 @@
+#Dictionary to Array
+#employees:
+#  name: john
+#  gender: male
+#  age: 24
+
+employees:
+  - name: john
+    gender: male
+    age: 24

@@ -1,0 +1,21 @@
+# Replace the hardcoded ip address of the name server in this playbook to use the value from the variable defined in the inventory file.
+# ---
+# - name: 'Add nameserver in resolv.conf file on localhos$
+#   hosts: localhost
+#   become: yes
+#   tasks:
+#     - name: 'Add nameserver in resolv.conf file'
+#       lineinfile:
+#         path: /tmp/resolv.conf
+#         line: 'nameserver 8.8.8.8'
+
+
+---
+- name: 'Add nameserver in resolv.conf file on localhos$
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: 'Add nameserver in resolv.conf file'
+      lineinfile:
+        path: /tmp/resolv.conf
+        line: 'nameserver {{ nameserver_ip }}'

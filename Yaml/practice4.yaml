@@ -1,0 +1,10 @@
+#adding new dictionary address under employee dictionary
+
+employee:
+   name: john
+   gender: male
+   age: 24
+   address:
+      city: edison
+      state: new jersey
+      country: united states
