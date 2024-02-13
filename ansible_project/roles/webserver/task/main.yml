@@ -1,0 +1,17 @@
+---
+- name: Install Nginx
+  become: true
+  apt:
+    name: nginx
+    state: present
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Copy custom web page
+  copy:
+    content: "<html><body><h1>Hello World! - Your Name</h1></body></html>"
+    dest: "/usr/share/nginx/html/index.html"
+
+- name: Start Nginx service
+  service:
+    name: nginx
+    state: started
