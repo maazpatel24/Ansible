@@ -1,0 +1,16 @@
+---
+- name: Check the operating system
+  ansible.builtin.setup:
+    filter: "ansible_distribution*"
+
+- name: Create OS-specific text file
+  ansible.builtin.block:
+    name: "Create OS-specific text file"
+    block:
+      - name: Check if OS is Ubuntu
+        ansible.builtin.command: echo "This is Ubuntu." > /home/user/ubuntu.txt
+        when: "'Ubuntu' in ansible_distribution"
+
+      - name: Check if OS is Red Hat
+        ansible.builtin.command: echo "This is Red Hat." > /home/user/redhat.txt
+        when: "'Red Hat' in ansible_distribution"
