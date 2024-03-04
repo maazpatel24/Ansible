@@ -15,5 +15,6 @@
   - name: Create OS info file
     ansible.builtin.copy:
      content: "OS Name: {{ ansible_distribution }}\nDistribution Version: {{ ansible_distribution_version }}\n"
-     dest: "/home/osboxes/{{ ansible_distribution }}.txt"
+     dest: "/home/{{ ansible_facts.user_id}}/{{ ansible_distribution }}.txt"    #{{ ansible_facts.user_id}} = user
+    #  dest: "{{ ansible_facts.user_dir }}/{{ ansible_distribution }}.txt"    #{{ ansible_facts.user_dir }} = /home/user
 
