@@ -1,0 +1,19 @@
+---
+- name: Install MySQL 5.7
+  hosts: target
+  become: yes
+  tasks:
+    - name: Copy MySQL packages to the target node
+      copy:
+        src: /home/osboxes/Desktop/mysql_packages
+        dest: /home/osboxes/Documents/mysql_packages/
+      notify:
+        - Install MySQL packages
+    - name: Install MySQL packages
+      become: yes
+      shell: dpkg -i /home/osboxes/Documents/mysql_packages/mysql_packages/*.deb
+
+#  handlers:
+#    - name: Install MySQL packages
+#      become: yes
+#      shell: dpkg -i /home/osboxes/Downloads/mysql_packages/*.deb
